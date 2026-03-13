@@ -13,6 +13,9 @@ This project is built using the required BT3103 tech stack:
 * **Back-End & Database:** Google Firebase (Authentication & Firestore)
 * **Version Control:** Git & GitHub
 
+## Agile & Scrum Tracking
+We manage our daily sprints and tasks using our team Scrum board. 
+* **[View our Daily Scrum Google Sheet Here](https://docs.google.com/spreadsheets/d/12e47DRC9Ijd8MLUqD2JoyOyr1-Gc2TajpSGFy-IvoS4/edit?gid=0#gid=0)**
 
 To run this project locally on your machine, follow these steps:
 Make sure you have [Node.js](https://nodejs.org/) installed on your computer.

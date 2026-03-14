@@ -1,10 +1,12 @@
-// src/services/auth.js
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { auth } from "../firebase"; // Importing the auth instance we set up earlier
+import { 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  signOut, 
+  sendPasswordResetEmail 
+} from "firebase/auth";
+import { auth } from "../firebase"; // Import the auth instance 
 
-
-
-// login
+// login function
 export async function loginUser(email, password) {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -17,8 +19,7 @@ export async function loginUser(email, password) {
   }
 }
 
-
-// registration
+// register function
 export async function registerUser(email, password) {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -28,5 +29,27 @@ export async function registerUser(email, password) {
   } catch (error) {
     console.error("Registration Error:", error.message);
     throw error; // Throws the error so the frontend can display it (e.g., "Password too weak")
+  }
+}
+
+// logout function
+export async function logoutUser() {
+  try {
+    await signOut(auth);
+    console.log("Success! User logged out.");
+  } catch (error) {
+    console.error("Logout Error:", error.message);
+    throw error;
+  }
+}
+
+// password reset function
+export async function resetPassword(email) {
+  try {
+    await sendPasswordResetEmail(auth, email);
+    console.log("Success! Password reset email sent to:", email);
+  } catch (error) {
+    console.error("Password Reset Error:", error.message);
+    throw error; // Throws error so frontend can show "Email not found" etc.
   }
 }

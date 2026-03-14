@@ -1,11 +1,11 @@
 <script setup>
-import Login from './components/Login.vue';
 </script>
 
 <template>
   <main class="app-wrapper">
     <h1>SubConnect</h1>
-    <Login />
+    
+    <router-view></router-view> 
   </main>
 </template>
 

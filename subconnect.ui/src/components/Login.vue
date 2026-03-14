@@ -17,28 +17,33 @@
       
       <p v-if="errorMessage" class="error-msg">{{ errorMessage }}</p>
     </form>
+
+    <p class="toggle-text">
+      Don't have an account? 
+      <router-link to="/register" class="toggle-link">Register here</router-link>
+    </p>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import { loginUser } from '../services/auth.js'; // Importing your custom auth logic!
+import { useRouter } from 'vue-router'; // 1. Import the router tool
+import { loginUser } from '../services/auth.js'; 
 
-// Reactive variables to hold what the user types
 const email = ref('');
 const password = ref('');
 const errorMessage = ref('');
+const router = useRouter(); // 2. Turn on the router for this component
 
 const handleLogin = async () => {
   try {
-    errorMessage.value = ''; // Clear any old errors
+    errorMessage.value = ''; 
     console.log("Attempting to log in...");
     
-    // Call your function from auth.js
-    const user = await loginUser(email.value, password.value);
+    await loginUser(email.value, password.value);
     
-    alert(`Success! Logged in as: ${user.email}`);
-    // NOTE: Later, we will use Vue Router to redirect them to the Dashboard here!
+    // 3. The Magic Redirect! Send them straight to the dashboard.
+    router.push('/dashboard');
     
   } catch (error) {
     console.error(error);
@@ -89,5 +94,23 @@ button:hover {
   color: red;
   margin-top: 1rem;
   text-align: center;
+}
+
+/* Styles for the bottom link */
+.toggle-text {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.toggle-link {
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.toggle-link:hover {
+  color: #0056b3;
 }
 </style>

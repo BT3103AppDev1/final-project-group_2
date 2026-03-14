@@ -1,12 +1,19 @@
+// src/firebase.js
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore"; // 1. Import Firestore
+
+// Your web app's Firebase configuration using the .env file variables
 const firebaseConfig = {
-  apiKey: "AIzaSyCpuPvhVtzomuGfMDb2STcbBhlLM4e98TM",
-  authDomain: "bt3103grp2.firebaseapp.com",
-  projectId: "bt3103grp2",
-  storageBucket: "bt3103grp2.firebasestorage.app",
-  messagingSenderId: "841360942940",
-  appId: "1:841360942940:web:bced5000e7c2a26beb8399",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
+export const auth = getAuth(app);
+export const db = getFirestore(app); // 2. Initialize and export the database

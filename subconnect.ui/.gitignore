@@ -37,3 +37,8 @@ __screenshots__/
 
 # Vite
 *.timestamp-*-*.mjs
+
+# Local environment variables (KEEP THIS SECRET!)
+.env
+.env.*
+!.env.example

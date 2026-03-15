@@ -22,7 +22,7 @@ export async function loginUser(email, password) {
   }
 }
 
-//  Google Sign-In function
+// NEW: Google Sign-In function
 export async function loginWithGoogle() {
   try {
     const result = await signInWithPopup(auth, googleProvider);

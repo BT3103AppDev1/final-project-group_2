@@ -37,6 +37,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router'; 
+// Import both the standard login and the new Google login!
 import { loginUser, loginWithGoogle } from '../services/auth.js'; 
 
 const email = ref('');
@@ -50,6 +51,8 @@ const handleLogin = async () => {
     console.log("Attempting to log in...");
     
     await loginUser(email.value, password.value);
+    
+    // The Magic Redirect!
     router.push('/dashboard');
   } catch (error) {
     console.error(error);
@@ -57,12 +60,15 @@ const handleLogin = async () => {
   }
 };
 
+// NEW: Handle the Google Popup
 const handleGoogleLogin = async () => {
   try {
     errorMessage.value = '';
     console.log("Opening Google popup...");
     
     await loginWithGoogle();
+    
+    // Redirect to dashboard just like a normal login!
     router.push('/dashboard');
   } catch (error) {
     console.error(error);
@@ -132,6 +138,7 @@ button:hover {
   color: #0056b3;
 }
 
+/* NEW: Google Button and Divider Styles */
 .divider {
   text-align: center;
   margin: 1.5rem 0;
@@ -159,7 +166,7 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 10px; /* Adds space between the logo and the text */
 }
 
 .google-btn:hover {

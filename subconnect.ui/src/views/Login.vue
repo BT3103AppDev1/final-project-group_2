@@ -6,6 +6,10 @@
         <h1 class="hero-title">Take control of your subscriptions.</h1>
         <p class="hero-subtitle">Consolidate, track, and save on your monthly spending with SubConnect's powerful analytics dashboard.</p>
       </div>
+      
+      <div class="team-credits">
+        <p>Built by <span class="team-name">Abi, Wei Young</span>, <span class="team-name">Jun Jie</span> & <span class="team-name">Kiahna</span></p>
+      </div>
     </div>
 
     <div class="auth-section">
@@ -84,22 +88,25 @@ const handleGoogleLogin = async () => {
 </script>
 
 <style scoped>
+/* --- split screen --- */
 .split-layout {
   display: flex;
-  min-height: 100vh; /* Takes up the full height of the browser window */
-  width: 100vw; /* Takes up the full width */
-  margin: -40px 0 0 0; /* Offsets the 40px padding we put in App.vue earlier */
+  min-height: 100vh;
+  width: 100vw; 
+  margin: -40px 0 0 0; 
 }
 
 /* --- left section --- */
 .hero-section {
-  flex: 1; /* Takes up 50% of the screen */
-  background: linear-gradient(135deg, #4A148C 0%, #311B92 100%); /* Deep purple gradient matching your logo */
+  flex: 1; 
+  background: linear-gradient(135deg, #4A148C 0%, #311B92 100%); 
   display: flex;
+  flex-direction: column; 
   align-items: center;
   justify-content: center;
   padding: 4rem;
   color: white;
+  position: relative; 
 }
 
 .hero-content {
@@ -119,22 +126,60 @@ const handleGoogleLogin = async () => {
   opacity: 0.9;
 }
 
-/* --- right section --- */
+/* --- team credits --- */
+.team-credits {
+  position: absolute;
+  bottom: 2rem;
+  left: 4rem;
+  font-size: 0.85rem;
+  opacity: 0; /* Start completely invisible */
+  letter-spacing: 0.5px;
+  /* Run the entrance animation: 1 second long, smooth curve, stay visible at the end */
+  animation: fadeSlideUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards; 
+}
+
+/* The Entrance Animation */
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(15px); /* Start slightly lower down */
+  }
+  100% {
+    opacity: 0.6; /* Fade in to 60% opacity so it stays subtle */
+    transform: translateY(0); /* Lock into its final resting place */
+  }
+}
+
+/* The Hover Glow on the Names */
+.team-name {
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease; /* Makes the transition smooth instead of instant */
+  cursor: default;
+}
+
+.team-name:hover {
+  color: #ffffff; /* Turns pure white */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Adds a futuristic glow */
+  opacity: 1; 
+}
+
+/* --- right ssection --- */
 .auth-section {
-  flex: 1; /* Takes up the other 50% */
+  flex: 1; 
   display: flex;
-  align-items: center; /* Centers the card vertically */
-  justify-content: center; /* Centers the card horizontally */
-  background-color: #f8f9fa; /* Keeps the soft gray background behind the card */
+  align-items: center; 
+  justify-content: center; 
+  background-color: #f8f9fa; 
 }
 
 .auth-container {
   width: 100%;
-  max-width: 400px; /* Keeps your card the exact same size */
+  max-width: 400px; 
   background: white;
   border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08); /* Slightly softer, more premium shadow */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08); 
   overflow: hidden; 
   display: flex;
   flex-direction: column;
